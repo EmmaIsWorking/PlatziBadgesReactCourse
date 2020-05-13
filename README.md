@@ -6,6 +6,7 @@
     - [JSX](#jsx)
     - [Componente vs elemento](#componente-vs-elemento)
     - [Props](#props)
+    - [Enlazando eventos](#enlazando-eventos)
 
 
 ## Instalacion:
@@ -59,3 +60,9 @@ Para identificarlos debes hacerte las siguientes preguntas:
 Los props que es la forma corta de properties son argumentos de una función y en este caso serán los atributos de nuestro componente como class, src, etc.
 
 Estos props salen de una variable de la clase que se llama this.props y los valores son asignados directamente en el ReactDOM.render().
+
+### Enlazando eventos
+React dispone de eventos. Cada vez que se recibe información en un input se obtiene un evento onChange y se maneja con un método de la clase this.handleChange
+Los elementos button también tienen un evento que es onClick.
+Cuando hay un botón dentro de un formulario, este automáticamente será de tipo submit. Si no queremos que pase así hay dos maneras de evitarlo: especificando que su valor es de tipo button o manejándolo desde el formulario cuando ocurre el evento onSubmit.
+
