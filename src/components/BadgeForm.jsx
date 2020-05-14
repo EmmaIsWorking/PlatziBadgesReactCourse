@@ -20,11 +20,11 @@ class BadgeForm extends Component {
     console.log('Hago click')
   };
 
-  handleSubmit = e =>{  //Se usa como alternativa de type="button"
-    e.preventDefault()
-    console.log('No se envia el formulario')
-    console.log(this.state)
-  };
+  // handleSubmit = e =>{  //Se usa como alternativa de type="button"
+  //   e.preventDefault()
+  //   console.log('No se envia el formulario')
+  //   console.log(this.state)
+  // };
 
 
   render() {
@@ -32,7 +32,7 @@ class BadgeForm extends Component {
       <div>
         <h1>New Attendant</h1>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.onSubmit}>
           <div className="form-group">
             <label>First Name</label>
             <input onChange={this.props.onChange} className="form-control" type="text" name="firstName" value={this.props.formValues.firstName} id=""/>

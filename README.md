@@ -10,6 +10,9 @@
     - [Manejo de estado](#manejo-de-estado)
     - [Levantamiento del estado](#levantamiento-del-estado)
     - [React Router](#react-router)
+    - [Ciclo de vida de un componente](#ciclo-de-vida-de-un-componente)
+    - [Llamadas a un API](#llamadas-a-un-api)
+    - [MD5](#md5)
 
 
 ## Instalacion:
@@ -22,7 +25,6 @@ Instala:
 
 Inicia el servidor:
 `npm run start`
-
 
 ## Conceptos
 
@@ -88,4 +90,35 @@ React Router (v4): Nos da las herramientas para poder hacer SPA fácilmente. Usa
 - BrowserRouter: es un componente que debe estar siempre lo más arriba de la aplicación. Todo lo que esté adentro funcionará como una SPA.
 - Route: Cuando hay un match con el path, se hace render del component. El component va a recibir tres props: match, history, location.
 - Switch: Dentro de Switch solamente van elementos de Route. Switch se asegura que solamente un Route se renderize.
-- Link: Toma el lugar del elemento <a>, evita que se recargue la página completamente y actualiza la URL.
+- Link: Toma el lugar del elemento `<a>`, evita que se recargue la página completamente y actualiza la URL.
+
+### Ciclo de vida de un componente
+Cuando React renderiza los componentes decimos que entran en escena, cuando su estado cambia o recibe unos props diferentes se actualizan y cuando cambiamos de página se dice que se desmontan.
+
+- Montaje:
+    Representa el momento donde se inserta el código del componente en el DOM.
+Se llaman tres métodos: constructor, render, componentDidMount.
+
+- Actualización:
+    Ocurre cuando los props o el estado del componente cambian.
+Se llaman dos métodos: render, componentDidUpdate.
+
+- Desmontaje:
+    Nos da la oportunidad de hacer limpieza de nuestro componente.
+Se llama un método: componentWillUnmount.
+
+### Llamadas a un API
+Las llamadas a una API siguen un patrón similar siempre que las hacemos, cada llamada consta de tres estados:
+
+- Loading: cuando la petición se envía y estamos esperando.
+- Error: se debe dejar un mensaje para el usuario para arreglar el error o volver a intentarlo.
+- Data: los datos nos pueden llegar de dos formas, o en error o con los datos requeridos.
+
+### MD5
+
+MD5 es una pequeña librería a la cual se le da un texto y ella regresa un hash.
+
+Podremos hacer pruebas para cifrar nuestros textos a md5 en el siguiente sitio [MD5 Online](https://md5online.es/cifrar-md5)
+
+Hola Platzi = d3bfb9302fb1007c0f996b41cba2818c
+
