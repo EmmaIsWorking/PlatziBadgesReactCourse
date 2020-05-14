@@ -7,6 +7,9 @@
     - [Componente vs elemento](#componente-vs-elemento)
     - [Props](#props)
     - [Enlazando eventos](#enlazando-eventos)
+    - [Manejo de estado](#manejo-de-estado)
+    - [Levantamiento del estado](#levantamiento-del-estado)
+    - [React Router](#react-router)
 
 
 ## Instalacion:
@@ -66,3 +69,23 @@ React dispone de eventos. Cada vez que se recibe información en un input se obt
 Los elementos button también tienen un evento que es onClick.
 Cuando hay un botón dentro de un formulario, este automáticamente será de tipo submit. Si no queremos que pase así hay dos maneras de evitarlo: especificando que su valor es de tipo button o manejándolo desde el formulario cuando ocurre el evento onSubmit.
 
+### Manejo de estado
+Hasta esta clase todos los componentes han obtenido su información a través de props que vienen desde afuera (otros componentes) pero hay otra manera en la que los componentes pueden producir su propia información y guardarla para ser consumida o pasada a otros componentes a través de sus props. La clave está en que la información del state a otros componentes pasará en una sola dirección y podrá ser consumida pero no modificada.
+
+- Para guardar la información en el estado se usa una función de la clase component llamada setState a la cual se le debe pasar un objeto con la información que se quiere guardar.
+- Aunque no se ve, la información está siendo guardada en dos sitios. Cada input guarda su propio valor y al tiempo la está guardando en setState, lo cual no es ideal. Para solucionarlo hay que modificar los inputs de un estado de no controlados a controlados.
+
+### Levantamiento del estado
+Levantar el estado es una técnica de React que pone el estado en una localización donde se le pueda pasar como props a los componentes. Lo ideal es poner el estado en el lugar más cercano a todos los componentes que quieren compartir esa información.
+
+Algo interesante que le da el nombre a React es su parte de “reactivo” ya que cada vez que hay un cambio en el estado o en los props que recibe un componente se vuelve a renderizar todo el componente y todos sus descendientes.
+
+### React Router
+Single Page Apps (SPA): Aplicaciones que cargan una sola página de HTML y cualquier actualización la hacen re-escribiendo el HTML que ya tenían.
+
+React Router (v4): Nos da las herramientas para poder hacer SPA fácilmente. Usaremos 4 componentes:
+
+- BrowserRouter: es un componente que debe estar siempre lo más arriba de la aplicación. Todo lo que esté adentro funcionará como una SPA.
+- Route: Cuando hay un match con el path, se hace render del component. El component va a recibir tres props: match, history, location.
+- Switch: Dentro de Switch solamente van elementos de Route. Switch se asegura que solamente un Route se renderize.
+- Link: Toma el lugar del elemento <a>, evita que se recargue la página completamente y actualiza la URL.

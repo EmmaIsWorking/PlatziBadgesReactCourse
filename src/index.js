@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-
 import './global.css';
-import BadgeNew from './pages/BadgeNew';
+
+import App from './components/App';
 
 const container = document.getElementById('app');
 
-ReactDOM.render(<BadgeNew />, container);
+ReactDOM.render(<App />, container);
 
 
 
 
-/* 
+/*
 
 // const JSX = <h1>Hello, Platzi Badges!</h1>;
 // const element = React.createElement('a', {href:'http://platzi.com'}, 'Vamos a Platzi') // Esto es lo mismo que JSX
