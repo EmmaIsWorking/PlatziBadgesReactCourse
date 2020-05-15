@@ -1,45 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
-import api from '../api.js'
+import MiniLoader from '../components/MiniLoader';
+import api from '../api';
+
 class Badges extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      loading:true,
-      error:null,
-      data: undefined,
-    };
+  state = {
+    loading: true,
+    error: null,
+    data: undefined,
   };
 
+  componentDidMount() {
+    this.fetchData();
 
-  componentDidMount(){
-    this.fetchData()
+    this.intervalId = setInterval(this.fetchData, 5000);
   }
 
-  fetchData = async ()=>{
-    this.setState({loading:true, error:null})
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  fetchData = async () => {
+    this.setState({ loading: true, error: null });
+
     try {
-      const data = await api.badges.list()
-      this.setState({loading:false, data:data})
+      const data = await api.badges.list();
+      this.setState({ loading: false, data: data });
     } catch (error) {
-      this.setState({loading:false, error:error})
+      this.setState({ loading: false, error: error });
     }
-  }
+  };
 
   render() {
-    if(this.state.loading === true){
-      return <PageLoading />
+    if (this.state.loading === true && !this.state.data) {
+      return <PageLoading />;
     }
 
-    if(this.state.error){
-      return <PageError error={this.state.error}/>
-
+    if (this.state.error) {
+      return <PageError error={this.state.error} />;
     }
+
     return (
       <React.Fragment>
         <div className="Badges">
@@ -62,6 +68,8 @@ class Badges extends React.Component {
           </div>
 
           <BadgesList badges={this.state.data} />
+
+          {this.state.loading && <MiniLoader />}
         </div>
       </React.Fragment>
     );
@@ -69,30 +77,3 @@ class Badges extends React.Component {
 }
 
 export default Badges;
-
-
-
-  //EJERCICIO INTRO LLAMADAS A LA APO
-  // componentDidMount() {
-  //   console.log('3. componentDidMount()');
-
-  //   this.timeoutId = setTimeout(() => {
-  //     this.timeoutId= this.setState({
-  //       data: 
-  //     });
-  //   }, 3000);
-  // }
-  // componentDidUpdate(prevProps, prevState){
-  //   console.log('5. componentDidUpdate()');
-  //   console.log({
-  //     prevProps: prevProps,
-  //     prevState: prevState,
-  //   })
-  //   console.log({
-  //     props: this.props,
-  //     state: this.state,
-  //   })
-  // }
-  // componentWillMount(){
-  //   clearTimeout(this.timeoutId)
-  // }
